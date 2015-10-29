@@ -25,13 +25,10 @@
     "test": "vows"
   },
   "directories": {
-    "example": "examples",
     "test": "test"
   },
-  "dependencies": {
-  },
-  "devDependencies": {
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "browser": {
     "os": false
   },
