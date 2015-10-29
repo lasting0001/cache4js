@@ -14,7 +14,7 @@ var cache = require('cache4js')(CACHE_TYPE);
 ````
 for global use:
 ````javascript
-var CACHE_TYPE = {
+global.CACHE_TYPE = {
     TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
     TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true}
 };
