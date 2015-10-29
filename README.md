@@ -33,7 +33,7 @@ setTimeout(function () {
     console.log(obj && obj.value || 'null'); //print:null,already recycled in 5s
 }, 6000);
 ````
-4、exact time use   
+4、exact time use    
 ````javascript
 var obj = cache.get(CACHE_TYPE.TEST_CACHE, 1);
 // time in ms
@@ -42,6 +42,18 @@ if (obj && obj.__time + 5000 > Date.now()) {
     console.log(obj.value);
 }
 ````
+5、for multi-use   
+````javascript
+var CACHE_TYPE = {
+    TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
+    TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true}
+};
+var cache1 = require('./src/cache')(CACHE_TYPE);
+var cache2 = require('./src/cache')(CACHE_TYPE);
+````
+cache1 and cache2 are totally seperated.   
+
+
 ##API
 1、config type
 ````javascript
@@ -57,7 +69,8 @@ SHOW_LOG: it will show the log when the cache obj be recycled only if this confi
 -------------------------------------------|------------------------------------------------------------------------------------------------------------   
 VALID_CHECK: it will not recycle anything only if this config is false and has no RECYCLE_TIME config;   
 -------------------------------------------|------------------------------------------------------------------------------------------------------------   
-2、interface
+2、interface   
+````javascript
 add(type,key,obj);   
 get(type,key);   
 del(type,key);   
@@ -65,7 +78,7 @@ addType(type);
 getType(type);   
 delType(type);   
 clearType(type);   
-   
+````
 For more details,please refer to the code.   
    
    
