@@ -1,6 +1,6 @@
 {
   "name": "cache4js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple and easy-to-use cache module with auto recycle for js/nodejs.",
   "keywords": [
     "cache",

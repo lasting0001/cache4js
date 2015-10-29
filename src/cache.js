@@ -7,7 +7,7 @@ var _recycle = require('./recycle');
 /**
  * 运行时缓存管理
  * 注:需要在外部检测参数合法性
- * {type:{key:{time:xxx,content:xxx}}}
+ * {type:{key:{__time:xxx,content:xxx}}}
  */
 
 function CacheShell(cache_type) {
@@ -46,7 +46,7 @@ function CacheShell(cache_type) {
                     return;
                 }
                 type = type.NAME;
-                value.time = Date.now();
+                value.__time = Date.now();
                 var cache = checkType(type, caches);
                 (cache) && (cache[key] = value) || (console.error('添加元素找不到该类型,type:' + type));
             },
@@ -64,7 +64,14 @@ function CacheShell(cache_type) {
                 type = type.NAME;
                 var cache = checkType(type, caches);
                 if (cache) {
-                    return cache[key];
+                    var obj = cache[key];
+                    var cache_type = cache_type_local[type];
+                    if (obj && obj.__time && (obj.__time + (cache_type && cache_type.RECYCLE_TIME || 600000) < Date.now())) {
+                        cache[key] = undefined;
+                        (cache_type && cache_type.SHOW_LOG === true) && (console.log('Recycle删除type:' + type + ',key:' + key));
+                        return null;
+                    }
+                    return obj;
                 }
                 return null;
             },

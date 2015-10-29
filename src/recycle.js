@@ -17,15 +17,11 @@ function Recycle(cache_type) {
                 if (cache_obj.VALID_CHECK === false) {
                     continue;
                 }
-                var validTime = cache_obj && cache_obj.RECYCLE_TIME || 600000;
-                if (!validTime) {
-                    continue;
-                }
                 var cache = caches[type];
                 if (cache) {
                     for (var key in cache) {
                         var value = cache[key];
-                        if (value && value.time && (value.time + validTime < Date.now())) {
+                        if (value && value.__time && (value.__time + (cache_obj && cache_obj.RECYCLE_TIME) < Date.now())) {
                             cache[key] = undefined;
                             (cache_obj.SHOW_LOG === true) && (console.log('Recycle删除type:' + type + ',key:' + key));
                         }
@@ -37,7 +33,7 @@ function Recycle(cache_type) {
                 console.warn('Recycle cost too much time：' + ct + 'ms');
             }
             return interval;
-        }, 1000);
+        }, 1000 * 60 * 30);
     };
     var interval = scan();
     return {
