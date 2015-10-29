@@ -10,7 +10,7 @@ var CACHE_TYPE = {
     TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
     TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true}
 };
-var cache = require('./src/cache')(CACHE_TYPE);
+var cache = require('cache4js')(CACHE_TYPE);
 ````
 for global use:
 ````javascript
@@ -18,7 +18,7 @@ var CACHE_TYPE = {
     TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
     TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true}
 };
-global._Cache = require('./src/cache')(CACHE_TYPE);
+global._Cache = require('cache4js')(CACHE_TYPE);
 ````
 3、common use:   
 ````javascript
@@ -48,8 +48,8 @@ var CACHE_TYPE = {
     TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
     TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true}
 };
-var cache1 = require('./src/cache')(CACHE_TYPE);
-var cache2 = require('./src/cache')(CACHE_TYPE);
+var cache1 = require('cache4js')(CACHE_TYPE);
+var cache2 = require('cache4js')(CACHE_TYPE);
 ````
 cache1 and cache2 are totally seperated.   
 
@@ -61,7 +61,7 @@ var CACHE_TYPE = {
     TEST_CACHE: {RECYCLE_TIME: 1000 * 5, SHOW_LOG: true},
     TEST_CACHE_1: {RECYCLE_TIME: 1000 * 10, SHOW_LOG: true,VALID_CHECK:false}
 };
-var cache = require('./src/cache')(CACHE_TYPE);
+var cache = require('cache4js')(CACHE_TYPE);
 ````
 RECYCLE_TIME: the life time of the special cache obj,count in milliseconds.Default:600000ms;   
 -------------------------------------------|------------------------------------------------------------------------------------------------------------   
